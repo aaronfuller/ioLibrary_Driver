@@ -428,6 +428,7 @@ int32_t recv(uint8_t sn, uint8_t * buf, uint16_t len)
             }
          }
          if((sock_io_mode & (1<<sn)) && (recvsize == 0)) return SOCK_BUSY;
+         if(!(getPHYCFGR() & PHYCFGR_LNK_ON)) return SOCKERR_SOCKSTATUS;
          if(recvsize != 0) break;
       };
 #if _WIZCHIP_ == 5300
